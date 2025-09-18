@@ -30,10 +30,6 @@ spec:
                   const: Banking
                 techArea:
                   enum: [Frontend, Backend, Database]
-                frontend:
-                  title: UI Framework
-                  type: string
-                  enum: [Vue.js, Next.js, Typescript]
               required: [techArea]
               dependencies:
                 techArea:
@@ -194,10 +190,19 @@ spec:
 
   output:
     text:
-      - title: ✅ Stack Chosen
+      - title: ✅ Project generated successfully
         content: |
+          You selected:
           - Domain: ${{ parameters.domain }}
-          - Focus: ${{ parameters.techArea }}
           - Frontend: ${{ parameters.frontend }}
           - Backend: ${{ parameters.backend }}
           - Database: ${{ parameters.database }}
+
+    links:
+      - title: 💻 Open in VSCode (optional example)
+        icon: code
+        url: https://vscode.dev/
+
+      - title: 🚀 Open in Replit (optional example)
+        icon: rocket
+        url: https://replit.com/
