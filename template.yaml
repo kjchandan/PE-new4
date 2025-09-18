@@ -3,7 +3,7 @@ kind: Template
 metadata:
   name: single-tech-focus-stack
   title: Single Tech Focus Stack Template
-  description: Choose a domain, then pick ONE tech area (frontend, backend, or database) to configure
+  description: Choose domain and one tech area (frontend, backend, or database)
   tags:
     - generator
     - focused
@@ -29,6 +29,7 @@ spec:
             - Insurance
             - HealthCare
             - Education
+
         techArea:
           title: Focus Area
           type: string
@@ -38,14 +39,14 @@ spec:
             - Database
 
       dependencies:
-        domain:
+        techArea:
           oneOf:
-            ## BANKING
+            # FRONTENDs
             - properties:
-                domain:
-                  const: Banking
                 techArea:
                   const: Frontend
+                domain:
+                  enum: [Banking]
                 frontend:
                   title: UI Framework
                   type: string
@@ -53,33 +54,10 @@ spec:
               required: [frontend]
 
             - properties:
-                domain:
-                  const: Banking
-                techArea:
-                  const: Backend
-                backend:
-                  title: Backend Platform
-                  type: string
-                  enum: [Java, Python, Ruby]
-              required: [backend]
-
-            - properties:
-                domain:
-                  const: Banking
-                techArea:
-                  const: Database
-                database:
-                  title: Database
-                  type: string
-                  enum: [MYSQL, PostgreSQL]
-              required: [database]
-
-            ## INSURANCE
-            - properties:
-                domain:
-                  const: Insurance
                 techArea:
                   const: Frontend
+                domain:
+                  enum: [Insurance]
                 frontend:
                   title: UI Framework
                   type: string
@@ -87,33 +65,10 @@ spec:
               required: [frontend]
 
             - properties:
-                domain:
-                  const: Insurance
-                techArea:
-                  const: Backend
-                backend:
-                  title: Backend Platform
-                  type: string
-                  enum: [Scala, Go, Django]
-              required: [backend]
-
-            - properties:
-                domain:
-                  const: Insurance
-                techArea:
-                  const: Database
-                database:
-                  title: Database
-                  type: string
-                  enum: [MYSQL, PostgreSQL]
-              required: [database]
-
-            ## HEALTHCARE
-            - properties:
-                domain:
-                  const: HealthCare
                 techArea:
                   const: Frontend
+                domain:
+                  enum: [HealthCare]
                 frontend:
                   title: UI Framework
                   type: string
@@ -121,10 +76,44 @@ spec:
               required: [frontend]
 
             - properties:
+                techArea:
+                  const: Frontend
                 domain:
-                  const: HealthCare
+                  enum: [Education]
+                frontend:
+                  title: UI Framework
+                  type: string
+                  enum: [Vue.js, Next.js, Typescript, Three.js, ReactJs, Angular 2+]
+              required: [frontend]
+
+            # BACKENDs
+            - properties:
                 techArea:
                   const: Backend
+                domain:
+                  enum: [Banking]
+                backend:
+                  title: Backend Platform
+                  type: string
+                  enum: [Java, Python, Ruby]
+              required: [backend]
+
+            - properties:
+                techArea:
+                  const: Backend
+                domain:
+                  enum: [Insurance]
+                backend:
+                  title: Backend Platform
+                  type: string
+                  enum: [Scala, Go, Django]
+              required: [backend]
+
+            - properties:
+                techArea:
+                  const: Backend
+                domain:
+                  enum: [HealthCare]
                 backend:
                   title: Backend Platform
                   type: string
@@ -132,33 +121,10 @@ spec:
               required: [backend]
 
             - properties:
-                domain:
-                  const: HealthCare
-                techArea:
-                  const: Database
-                database:
-                  title: Database
-                  type: string
-                  enum: [MYSQL, PostgreSQL]
-              required: [database]
-
-            ## EDUCATION
-            - properties:
-                domain:
-                  const: Education
-                techArea:
-                  const: Frontend
-                frontend:
-                  title: UI Framework
-                  type: string
-                  enum: [Vue.js, Next.js, Typescript, Three.js, ReactJs, Angular 2+]
-              required: [frontend]
-
-            - properties:
-                domain:
-                  const: Education
                 techArea:
                   const: Backend
+                domain:
+                  enum: [Education]
                 backend:
                   title: Backend Platform
                   type: string
@@ -176,11 +142,12 @@ spec:
                     - ASP.NET
               required: [backend]
 
+            # DATABASEs
             - properties:
-                domain:
-                  const: Education
                 techArea:
                   const: Database
+                domain:
+                  enum: [Banking, Insurance, HealthCare, Education]
                 database:
                   title: Database
                   type: string
