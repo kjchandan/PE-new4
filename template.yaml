@@ -44,7 +44,6 @@ spec:
                           title: UI Framework
                           type: string
                           enum: [Vue.js, Next.js, Typescript]
-                          ui:visibleIf: true  # Always visible once Frontend is selected
                         repoUrl:
                           title: Repo URL
                           type: string
@@ -52,7 +51,7 @@ spec:
                             - https://github.com/your-org/banking-vuejs-frontend
                             - https://github.com/your-org/banking-nextjs-frontend
                             - https://github.com/your-org/banking-typescript-frontend
-                          ui:visibleIf: frontend  # Repo URL is visible after selecting a frontend stack
+                          ui:visibleIf: frontend  # Repo URL visible after selecting a frontend stack
                       required: [frontend]
 
                     # Banking / Backend
@@ -63,7 +62,6 @@ spec:
                           title: Backend Platform
                           type: string
                           enum: [Java, Python, Ruby]
-                          ui:visibleIf: true  # Always visible once Backend is selected
                         repoUrl:
                           title: Repo URL
                           type: string
@@ -71,7 +69,7 @@ spec:
                             - https://github.com/your-org/banking-java-backend
                             - https://github.com/your-org/banking-python-backend
                             - https://github.com/your-org/banking-ruby-backend
-                          ui:visibleIf: backend  # Repo URL is visible after selecting a backend stack
+                          ui:visibleIf: backend  # Repo URL visible after selecting a backend stack
                       required: [backend]
 
                     # Banking / Database
@@ -82,14 +80,13 @@ spec:
                           title: Database
                           type: string
                           enum: [MYSQL, PostgreSQL]
-                          ui:visibleIf: true  # Always visible once Database is selected
                         repoUrl:
                           title: Repo URL
                           type: string
                           enum:
                             - https://github.com/your-org/banking-mysql-schema
                             - https://github.com/your-org/banking-postgresql-schema
-                          ui:visibleIf: database  # Repo URL is visible after selecting a database stack
+                          ui:visibleIf: database  # Repo URL visible after selecting a database stack
                       required: [database]
 
             # -------------------
@@ -112,13 +109,12 @@ spec:
                           title: UI Framework
                           type: string
                           enum: [React, Angular]
-                          ui:visibleIf: true
                         repoUrl:
                           title: Repo URL
                           type: string
                           enum:
-                            - https://github.com/your-org/insurance-angular-frontend
                             - https://github.com/your-org/insurance-react-frontend
+                            - https://github.com/your-org/insurance-angular-frontend
                           ui:visibleIf: frontend
                       required: [frontend]
 
@@ -130,7 +126,6 @@ spec:
                           title: Backend Platform
                           type: string
                           enum: [Scala, Go, Django]
-                          ui:visibleIf: true
                         repoUrl:
                           title: Repo URL
                           type: string
@@ -149,7 +144,6 @@ spec:
                           title: Database
                           type: string
                           enum: [MYSQL, PostgreSQL]
-                          ui:visibleIf: true
                         repoUrl:
                           title: Repo URL
                           type: string
@@ -179,7 +173,6 @@ spec:
                           title: UI Framework
                           type: string
                           enum: [Three.js, ReactJs, Angular 2+]
-                          ui:visibleIf: true
                         repoUrl:
                           title: Repo URL
                           type: string
@@ -198,7 +191,6 @@ spec:
                           title: Backend Platform
                           type: string
                           enum: [Springboot, ASP.NET]
-                          ui:visibleIf: true
                         repoUrl:
                           title: Repo URL
                           type: string
@@ -216,7 +208,6 @@ spec:
                           title: Database
                           type: string
                           enum: [MYSQL, PostgreSQL]
-                          ui:visibleIf: true
                         repoUrl:
                           title: Repo URL
                           type: string
@@ -246,7 +237,6 @@ spec:
                           title: UI Framework
                           type: string
                           enum: [Vue.js, Next.js, Typescript, Three.js, ReactJs, Angular 2+]
-                          ui:visibleIf: true
                         repoUrl:
                           title: Repo URL
                           type: string
@@ -268,7 +258,6 @@ spec:
                           title: Backend Platform
                           type: string
                           enum: [Java, Python, Ruby, PHP, Kotlin, Csharp, Perl, Scala, Go, Django, Springboot, ASP.NET]
-                          ui:visibleIf: true
                         repoUrl:
                           title: Repo URL
                           type: string
@@ -296,7 +285,6 @@ spec:
                           title: Database
                           type: string
                           enum: [MYSQL, PostgreSQL]
-                          ui:visibleIf: true
                         repoUrl:
                           title: Repo URL
                           type: string
