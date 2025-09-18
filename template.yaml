@@ -4,6 +4,11 @@ metadata:
   name: strict-stack-selector
   title: Developer Friendly portal
   description: Select domain, focus area, and tech stack → only the matching repo link shows
+  tags:
+    - backstage
+    - developer
+    - techstack
+    - technology
 spec:
   owner: user:your-username
   type: service
