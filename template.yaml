@@ -52,7 +52,7 @@ spec:
                             - https://github.com/your-org/banking-nextjs-frontend
                             - https://github.com/your-org/banking-typescript-frontend
                           ui:visibleIf: frontend  # Repo URL visible after selecting a frontend stack
-                      required: [frontend]
+                      # required: [frontend]
 
                     # Banking / Backend
                     - properties:
