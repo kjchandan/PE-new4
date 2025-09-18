@@ -1,22 +1,22 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: single-tech-focus-stack
-  title: Single Tech Focus Stack Template
-  description: Choose domain and one tech area (frontend, backend, or database)
+  name: multi-step-stack-template
+  title: Multi-Step Stack Selector
+  description: Select domain and focus area, then choose appropriate tech stack in the next step
   tags:
-    - generator
-    - focused
+    - wizard
     - frontend
     - backend
     - database
-
 spec:
   owner: user:your-username
   type: service
 
   parameters:
-    - title: Project Configuration
+    # Step 1 - Domain and Focus Area
+    - title: Project Info
+      description: Choose your domain and area of tech focus.
       required:
         - domain
         - techArea
@@ -29,7 +29,6 @@ spec:
             - Insurance
             - HealthCare
             - Education
-
         techArea:
           title: Focus Area
           type: string
@@ -38,10 +37,13 @@ spec:
             - Backend
             - Database
 
+    # Step 2 - Tech Stack Options (based on domain + focus area)
+    - title: Tech Stack Selection
+      description: Based on domain and focus, select a technology stack.
       dependencies:
         techArea:
           oneOf:
-            # FRONTENDs
+            # FRONTEND OPTIONS
             - properties:
                 techArea:
                   const: Frontend
@@ -86,7 +88,7 @@ spec:
                   enum: [Vue.js, Next.js, Typescript, Three.js, ReactJs, Angular 2+]
               required: [frontend]
 
-            # BACKENDs
+            # BACKEND OPTIONS
             - properties:
                 techArea:
                   const: Backend
@@ -142,7 +144,7 @@ spec:
                     - ASP.NET
               required: [backend]
 
-            # DATABASEs
+            # DATABASE OPTIONS
             - properties:
                 techArea:
                   const: Database
@@ -169,7 +171,7 @@ spec:
 
   output:
     text:
-      - title: ✅ Project Generated Successfully
+      - title: ✅ Project Created Successfully
         content: |
           You selected:
           - Domain: ${{ parameters.domain }}
@@ -184,7 +186,3 @@ spec:
       - title: 💻 Open in VSCode
         icon: code
         url: https://vscode.dev/
-
-      - title: 🚀 Open in Replit
-        icon: rocket
-        url: https://replit.com/
