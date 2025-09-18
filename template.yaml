@@ -15,7 +15,7 @@ spec:
         domain:
           title: Domain
           type: string
-          enum: [Banking, Insurance, Healthcare, Education]
+          enum: [Banking, Insurance, HealthCare, Education]
         techArea:
           title: Focus Area
           type: string
@@ -52,6 +52,7 @@ spec:
                             - https://github.com/your-org/banking-vuejs-frontend
                             - https://github.com/your-org/banking-nextjs-frontend
                             - https://github.com/your-org/banking-typescript-frontend
+                          ui:visibleIf: frontend
                       required: [frontend]
 
                     # Banking / Backend
@@ -69,6 +70,7 @@ spec:
                             - https://github.com/your-org/banking-java-backend
                             - https://github.com/your-org/banking-python-backend
                             - https://github.com/your-org/banking-ruby-backend
+                          ui:visibleIf: backend
                       required: [backend]
 
                     # Banking / Database
@@ -85,6 +87,7 @@ spec:
                           enum:
                             - https://github.com/your-org/banking-mysql-schema
                             - https://github.com/your-org/banking-postgresql-schema
+                          ui:visibleIf: database
                       required: [database]
 
             # -------------------
@@ -111,8 +114,9 @@ spec:
                           title: Repo URL
                           type: string
                           enum:
-                            - https://github.com/your-org/insurance-react-frontend
+                            - https://github.com/kjchandan/simple-frontend-code
                             - https://github.com/your-org/insurance-angular-frontend
+                          ui:visibleIf: frontend
                       required: [frontend]
 
                     # Insurance / Backend
@@ -130,6 +134,7 @@ spec:
                             - https://github.com/your-org/insurance-scala-backend
                             - https://github.com/your-org/insurance-go-backend
                             - https://github.com/your-org/insurance-django-backend
+                          ui:visibleIf: backend
                       required: [backend]
 
                     # Insurance / Database
@@ -146,21 +151,22 @@ spec:
                           enum:
                             - https://github.com/your-org/insurance-mysql-schema
                             - https://github.com/your-org/insurance-postgresql-schema
+                          ui:visibleIf: database
                       required: [database]
 
             # -------------------
-            # Healthcare
+            # HealthCare
             # -------------------
             - properties:
                 domain:
-                  const: Healthcare
+                  const: HealthCare
                 techArea:
                   enum: [Frontend, Backend, Database]
               required: [techArea]
               dependencies:
                 techArea:
                   oneOf:
-                    # Healthcare / Frontend
+                    # HealthCare / Frontend
                     - properties:
                         techArea:
                           const: Frontend
@@ -175,9 +181,10 @@ spec:
                             - https://github.com/your-org/healthcare-threejs-frontend
                             - https://github.com/your-org/healthcare-reactjs-frontend
                             - https://github.com/your-org/healthcare-angular2-frontend
+                          ui:visibleIf: frontend
                       required: [frontend]
 
-                    # Healthcare / Backend
+                    # HealthCare / Backend
                     - properties:
                         techArea:
                           const: Backend
@@ -191,9 +198,10 @@ spec:
                           enum:
                             - https://github.com/your-org/healthcare-springboot-backend
                             - https://github.com/your-org/healthcare-aspnet-backend
+                          ui:visibleIf: backend
                       required: [backend]
 
-                    # Healthcare / Database
+                    # HealthCare / Database
                     - properties:
                         techArea:
                           const: Database
@@ -207,6 +215,7 @@ spec:
                           enum:
                             - https://github.com/your-org/healthcare-mysql-schema
                             - https://github.com/your-org/healthcare-postgresql-schema
+                          ui:visibleIf: database
                       required: [database]
 
             # -------------------
@@ -239,6 +248,7 @@ spec:
                             - https://github.com/your-org/education-threejs-frontend
                             - https://github.com/your-org/education-reactjs-frontend
                             - https://github.com/your-org/education-angular2-frontend
+                          ui:visibleIf: frontend
                       required: [frontend]
 
                     # Education / Backend
@@ -248,7 +258,7 @@ spec:
                         backend:
                           title: Backend Platform
                           type: string
-                          enum: [Java, Python, Ruby, PHP, Kotlin, CSharp, Perl, Scala, Go, Django, Springboot, ASP.NET]
+                          enum: [Java, Python, Ruby, PHP, Kotlin, Csharp, Perl, Scala, Go, Django, Springboot, ASP.NET]
                         repoUrl:
                           title: Repo URL
                           type: string
@@ -265,6 +275,7 @@ spec:
                             - https://github.com/your-org/education-django-backend
                             - https://github.com/your-org/education-springboot-backend
                             - https://github.com/your-org/education-aspnet-backend
+                          ui:visibleIf: backend
                       required: [backend]
 
                     # Education / Database
@@ -281,6 +292,7 @@ spec:
                           enum:
                             - https://github.com/your-org/education-mysql-schema
                             - https://github.com/your-org/education-postgresql-schema
+                          ui:visibleIf: database
                       required: [database]
 
   steps:
