@@ -15,7 +15,7 @@ spec:
         domain:
           title: Domain
           type: string
-          enum: [Banking, Insurance, HealthCare, Education]
+          enum: [Banking, Insurance, Healthcare, Education]
         techArea:
           title: Focus Area
           type: string
@@ -106,12 +106,13 @@ spec:
                         frontend:
                           title: UI Framework
                           type: string
-                          enum: [React]
+                          enum: [React, Angular]
                         repoUrl:
                           title: Repo URL
                           type: string
                           enum:
-                            - https://github.com/kjchandan/simple-frontend-code
+                            - https://github.com/your-org/insurance-react-frontend
+                            - https://github.com/your-org/insurance-angular-frontend
                       required: [frontend]
 
                     # Insurance / Backend
@@ -121,11 +122,13 @@ spec:
                         backend:
                           title: Backend Platform
                           type: string
-                          enum: [Django]
+                          enum: [Scala, Go, Django]
                         repoUrl:
                           title: Repo URL
                           type: string
                           enum:
+                            - https://github.com/your-org/insurance-scala-backend
+                            - https://github.com/your-org/insurance-go-backend
                             - https://github.com/your-org/insurance-django-backend
                       required: [backend]
 
@@ -136,69 +139,74 @@ spec:
                         database:
                           title: Database
                           type: string
-                          enum: [PostgreSQL]
+                          enum: [MYSQL, PostgreSQL]
                         repoUrl:
                           title: Repo URL
                           type: string
                           enum:
+                            - https://github.com/your-org/insurance-mysql-schema
                             - https://github.com/your-org/insurance-postgresql-schema
                       required: [database]
 
             # -------------------
-            # HealthCare
+            # Healthcare
             # -------------------
             - properties:
                 domain:
-                  const: HealthCare
+                  const: Healthcare
                 techArea:
                   enum: [Frontend, Backend, Database]
               required: [techArea]
               dependencies:
                 techArea:
                   oneOf:
-                    # HealthCare / Frontend
+                    # Healthcare / Frontend
                     - properties:
                         techArea:
                           const: Frontend
                         frontend:
                           title: UI Framework
                           type: string
-                          enum: [Angular 2+]
+                          enum: [Three.js, ReactJs, Angular 2+]
                         repoUrl:
                           title: Repo URL
                           type: string
                           enum:
-                            - https://github.com/your-org/healthcare-angular-frontend
+                            - https://github.com/your-org/healthcare-threejs-frontend
+                            - https://github.com/your-org/healthcare-reactjs-frontend
+                            - https://github.com/your-org/healthcare-angular2-frontend
                       required: [frontend]
 
-                    # HealthCare / Backend
+                    # Healthcare / Backend
                     - properties:
                         techArea:
                           const: Backend
                         backend:
                           title: Backend Platform
                           type: string
-                          enum: [Springboot]
+                          enum: [Springboot, ASP.NET]
                         repoUrl:
                           title: Repo URL
                           type: string
                           enum:
                             - https://github.com/your-org/healthcare-springboot-backend
+                            - https://github.com/your-org/healthcare-aspnet-backend
                       required: [backend]
 
-                    # HealthCare / Database
+                    # Healthcare / Database
                     - properties:
                         techArea:
                           const: Database
                         database:
                           title: Database
                           type: string
-                          enum: [MYSQL]
+                          enum: [MYSQL, PostgreSQL]
                         repoUrl:
                           title: Repo URL
                           type: string
                           enum:
                             - https://github.com/your-org/healthcare-mysql-schema
+                            - https://github.com/your-org/healthcare-postgresql-schema
                       required: [database]
 
             # -------------------
@@ -220,12 +228,17 @@ spec:
                         frontend:
                           title: UI Framework
                           type: string
-                          enum: [ReactJs]
+                          enum: [Vue.js, Next.js, Typescript, Three.js, ReactJs, Angular 2+]
                         repoUrl:
                           title: Repo URL
                           type: string
                           enum:
+                            - https://github.com/your-org/education-vuejs-frontend
+                            - https://github.com/your-org/education-nextjs-frontend
+                            - https://github.com/your-org/education-typescript-frontend
+                            - https://github.com/your-org/education-threejs-frontend
                             - https://github.com/your-org/education-reactjs-frontend
+                            - https://github.com/your-org/education-angular2-frontend
                       required: [frontend]
 
                     # Education / Backend
@@ -235,12 +248,23 @@ spec:
                         backend:
                           title: Backend Platform
                           type: string
-                          enum: [Springboot]
+                          enum: [Java, Python, Ruby, PHP, Kotlin, CSharp, Perl, Scala, Go, Django, Springboot, ASP.NET]
                         repoUrl:
                           title: Repo URL
                           type: string
                           enum:
+                            - https://github.com/your-org/education-java-backend
+                            - https://github.com/your-org/education-python-backend
+                            - https://github.com/your-org/education-ruby-backend
+                            - https://github.com/your-org/education-php-backend
+                            - https://github.com/your-org/education-kotlin-backend
+                            - https://github.com/your-org/education-csharp-backend
+                            - https://github.com/your-org/education-perl-backend
+                            - https://github.com/your-org/education-scala-backend
+                            - https://github.com/your-org/education-go-backend
+                            - https://github.com/your-org/education-django-backend
                             - https://github.com/your-org/education-springboot-backend
+                            - https://github.com/your-org/education-aspnet-backend
                       required: [backend]
 
                     # Education / Database
