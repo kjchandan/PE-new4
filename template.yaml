@@ -10,7 +10,7 @@ metadata:
     - techstack
     - technology
 spec:
-  owner: user:your-username
+  owner: user:kjchandan
   type: service
 
   parameters:
