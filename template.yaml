@@ -1,0 +1,223 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: single-tech-focus-stack
+  title: Single Tech Focus Stack Template
+  description: Choose a domain, then pick ONE tech area (frontend, backend, or database) to configure
+  tags:
+    - generator
+    - focused
+    - frontend
+    - backend
+    - database
+
+spec:
+  owner: user:your-username
+  type: service
+
+  parameters:
+    - title: Project Configuration
+      required:
+        - domain
+        - techArea
+      properties:
+        domain:
+          title: Select a Domain
+          type: string
+          enum:
+            - Banking
+            - Insurance
+            - HealthCare
+            - Education
+        techArea:
+          title: Focus Area
+          type: string
+          enum:
+            - Frontend
+            - Backend
+            - Database
+
+      dependencies:
+        domain:
+          oneOf:
+            ## BANKING
+            - properties:
+                domain:
+                  const: Banking
+                techArea:
+                  const: Frontend
+                frontend:
+                  title: UI Framework
+                  type: string
+                  enum: [Vue.js, Next.js, Typescript]
+              required: [frontend]
+
+            - properties:
+                domain:
+                  const: Banking
+                techArea:
+                  const: Backend
+                backend:
+                  title: Backend Platform
+                  type: string
+                  enum: [Java, Python, Ruby]
+              required: [backend]
+
+            - properties:
+                domain:
+                  const: Banking
+                techArea:
+                  const: Database
+                database:
+                  title: Database
+                  type: string
+                  enum: [MYSQL, PostgreSQL]
+              required: [database]
+
+            ## INSURANCE
+            - properties:
+                domain:
+                  const: Insurance
+                techArea:
+                  const: Frontend
+                frontend:
+                  title: UI Framework
+                  type: string
+                  enum: [React, Angular]
+              required: [frontend]
+
+            - properties:
+                domain:
+                  const: Insurance
+                techArea:
+                  const: Backend
+                backend:
+                  title: Backend Platform
+                  type: string
+                  enum: [Scala, Go, Django]
+              required: [backend]
+
+            - properties:
+                domain:
+                  const: Insurance
+                techArea:
+                  const: Database
+                database:
+                  title: Database
+                  type: string
+                  enum: [MYSQL, PostgreSQL]
+              required: [database]
+
+            ## HEALTHCARE
+            - properties:
+                domain:
+                  const: HealthCare
+                techArea:
+                  const: Frontend
+                frontend:
+                  title: UI Framework
+                  type: string
+                  enum: [Three.js, ReactJs, Angular 2+]
+              required: [frontend]
+
+            - properties:
+                domain:
+                  const: HealthCare
+                techArea:
+                  const: Backend
+                backend:
+                  title: Backend Platform
+                  type: string
+                  enum: [Springboot, ASP.NET]
+              required: [backend]
+
+            - properties:
+                domain:
+                  const: HealthCare
+                techArea:
+                  const: Database
+                database:
+                  title: Database
+                  type: string
+                  enum: [MYSQL, PostgreSQL]
+              required: [database]
+
+            ## EDUCATION
+            - properties:
+                domain:
+                  const: Education
+                techArea:
+                  const: Frontend
+                frontend:
+                  title: UI Framework
+                  type: string
+                  enum: [Vue.js, Next.js, Typescript, Three.js, ReactJs, Angular 2+]
+              required: [frontend]
+
+            - properties:
+                domain:
+                  const: Education
+                techArea:
+                  const: Backend
+                backend:
+                  title: Backend Platform
+                  type: string
+                  enum:
+                    - Java
+                    - Python
+                    - Ruby
+                    - PHP Kotlin
+                    - C sharp
+                    - Perl
+                    - Scala
+                    - Go
+                    - Djangi
+                    - Springboot
+                    - ASP.NET
+              required: [backend]
+
+            - properties:
+                domain:
+                  const: Education
+                techArea:
+                  const: Database
+                database:
+                  title: Database
+                  type: string
+                  enum: [MYSQL, PostgreSQL]
+              required: [database]
+
+  steps:
+    - id: fetch
+      name: Fetch Skeleton
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          domain: ${{ parameters.domain }}
+          techArea: ${{ parameters.techArea }}
+          frontend: ${{ parameters.frontend }}
+          backend: ${{ parameters.backend }}
+          database: ${{ parameters.database }}
+
+  output:
+    text:
+      - title: ✅ Project Generated Successfully
+        content: |
+          You selected:
+          - Domain: ${{ parameters.domain }}
+          - Focus Area: ${{ parameters.techArea }}
+
+          Stack:
+          - Frontend: ${{ parameters.frontend }}
+          - Backend: ${{ parameters.backend }}
+          - Database: ${{ parameters.database }}
+
+    links:
+      - title: 💻 Open in VSCode
+        icon: code
+        url: https://vscode.dev/
+
+      - title: 🚀 Open in Replit
+        icon: rocket
+        url: https://replit.com/
