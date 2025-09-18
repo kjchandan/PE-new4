@@ -1,101 +1,187 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: multi-step-stack-template
-  title: Multi-Step Stack Selector
-  description: Select domain and focus area, then choose appropriate tech stack in the next step
-  tags:
-    - wizard
-    - frontend
-    - backend
-    - database
-
+  name: dynamic-tech-stack
+  title: Dynamic Tech Stack Selector
+  description: Choose domain and tech area, then get correct stack options
 spec:
   owner: user:your-username
   type: service
 
   parameters:
-    # Step 1 - Select domain and tech area
-    - title: Project Info
-      description: Choose your domain and tech focus.
-      required:
-        - domain
-        - techArea
+    - title: Select Your Stack
+      required: [domain, techArea]
       properties:
         domain:
-          title: Select a Domain
+          title: Domain
           type: string
-          enum:
-            - Banking
-            - Insurance
-            - HealthCare
-            - Education
+          enum: [Banking, Insurance, HealthCare, Education]
         techArea:
           title: Focus Area
           type: string
-          enum:
-            - Frontend
-            - Backend
-            - Database
+          enum: [Frontend, Backend, Database]
 
-    # Step 2 - Select tech stack based on techArea only
-    - title: Tech Stack Selection
-      description: Now select your technology stack based on the chosen focus area.
       dependencies:
-        techArea:
+        domain:
           oneOf:
+            # BANKING
             - properties:
+                domain:
+                  const: Banking
                 techArea:
-                  const: Frontend
+                  enum: [Frontend, Backend, Database]
                 frontend:
                   title: UI Framework
                   type: string
-                  enum:
-                    - Vue.js (Banking, Education)
-                    - Next.js (Banking, Education)
-                    - Typescript (Banking, Education)
-                    - React (Insurance)
-                    - Angular (Insurance)
-                    - Three.js (HealthCare, Education)
-                    - ReactJs (HealthCare, Education)
-                    - Angular 2+ (HealthCare, Education)
-              required: [frontend]
-
-            - properties:
+                  enum: [Vue.js, Next.js, Typescript]
+              required: [techArea]
+              dependencies:
                 techArea:
-                  const: Backend
-                backend:
-                  title: Backend Platform
-                  type: string
-                  enum:
-                    - Java (Banking, Education)
-                    - Python (Banking, Education)
-                    - Ruby (Banking, Education)
-                    - Scala (Insurance, Education)
-                    - Go (Insurance, Education)
-                    - Django (Insurance)
-                    - Springboot (HealthCare, Education)
-                    - ASP.NET (HealthCare, Education)
-                    - PHP Kotlin (Education)
-                    - C sharp (Education)
-                    - Perl (Education)
-                    - Djangi (Education)
-              required: [backend]
+                  oneOf:
+                    - properties:
+                        techArea:
+                          const: Frontend
+                        frontend:
+                          title: UI Framework
+                          type: string
+                          enum: [Vue.js, Next.js, Typescript]
+                      required: [frontend]
+                    - properties:
+                        techArea:
+                          const: Backend
+                        backend:
+                          title: Backend Platform
+                          type: string
+                          enum: [Java, Python, Ruby]
+                      required: [backend]
+                    - properties:
+                        techArea:
+                          const: Database
+                        database:
+                          title: Database
+                          type: string
+                          enum: [MYSQL, PostgreSQL]
+                      required: [database]
 
+            # INSURANCE
             - properties:
+                domain:
+                  const: Insurance
                 techArea:
-                  const: Database
-                database:
-                  title: Database
-                  type: string
-                  enum:
-                    - MYSQL
-                    - PostgreSQL
-              required: [database]
+                  enum: [Frontend, Backend, Database]
+              required: [techArea]
+              dependencies:
+                techArea:
+                  oneOf:
+                    - properties:
+                        techArea:
+                          const: Frontend
+                        frontend:
+                          title: UI Framework
+                          type: string
+                          enum: [React, Angular]
+                      required: [frontend]
+                    - properties:
+                        techArea:
+                          const: Backend
+                        backend:
+                          title: Backend Platform
+                          type: string
+                          enum: [Scala, Go, Django]
+                      required: [backend]
+                    - properties:
+                        techArea:
+                          const: Database
+                        database:
+                          title: Database
+                          type: string
+                          enum: [MYSQL, PostgreSQL]
+                      required: [database]
+
+            # HEALTHCARE
+            - properties:
+                domain:
+                  const: HealthCare
+                techArea:
+                  enum: [Frontend, Backend, Database]
+              required: [techArea]
+              dependencies:
+                techArea:
+                  oneOf:
+                    - properties:
+                        techArea:
+                          const: Frontend
+                        frontend:
+                          title: UI Framework
+                          type: string
+                          enum: [Three.js, ReactJs, Angular 2+]
+                      required: [frontend]
+                    - properties:
+                        techArea:
+                          const: Backend
+                        backend:
+                          title: Backend Platform
+                          type: string
+                          enum: [Springboot, ASP.NET]
+                      required: [backend]
+                    - properties:
+                        techArea:
+                          const: Database
+                        database:
+                          title: Database
+                          type: string
+                          enum: [MYSQL, PostgreSQL]
+                      required: [database]
+
+            # EDUCATION
+            - properties:
+                domain:
+                  const: Education
+                techArea:
+                  enum: [Frontend, Backend, Database]
+              required: [techArea]
+              dependencies:
+                techArea:
+                  oneOf:
+                    - properties:
+                        techArea:
+                          const: Frontend
+                        frontend:
+                          title: UI Framework
+                          type: string
+                          enum: [Vue.js, Next.js, Typescript, Three.js, ReactJs, Angular 2+]
+                      required: [frontend]
+                    - properties:
+                        techArea:
+                          const: Backend
+                        backend:
+                          title: Backend Platform
+                          type: string
+                          enum:
+                            - Java
+                            - Python
+                            - Ruby
+                            - PHP Kotlin
+                            - C sharp
+                            - Perl
+                            - Scala
+                            - Go
+                            - Djangi
+                            - Springboot
+                            - ASP.NET
+                      required: [backend]
+                    - properties:
+                        techArea:
+                          const: Database
+                        database:
+                          title: Database
+                          type: string
+                          enum: [MYSQL, PostgreSQL]
+                      required: [database]
 
   steps:
     - id: fetch
-      name: Fetch Skeleton
+      name: Fetch Template
       action: fetch:template
       input:
         url: ./skeleton
@@ -108,16 +194,10 @@ spec:
 
   output:
     text:
-      - title: ✅ Project Generated
+      - title: ✅ Stack Chosen
         content: |
-          You selected:
           - Domain: ${{ parameters.domain }}
-          - Focus Area: ${{ parameters.techArea }}
+          - Focus: ${{ parameters.techArea }}
           - Frontend: ${{ parameters.frontend }}
           - Backend: ${{ parameters.backend }}
           - Database: ${{ parameters.database }}
-
-    links:
-      - title: Open in VSCode
-        icon: code
-        url: https://vscode.dev/
