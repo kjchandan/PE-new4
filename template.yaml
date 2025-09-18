@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: strict-stack-selector
-  title: Strict Domain Tech Stack Selector with Repo Links
+  title: Developer Friendly portal
   description: Select domain, focus area, and tech stack → only the matching repo link shows
 spec:
   owner: user:your-username
