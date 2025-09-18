@@ -1,15 +1,15 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: strict-domain-stack-selector
+  name: strict-stack-selector
   title: Strict Domain Tech Stack Selector with Repo Links
-  description: Select domain, focus area, tech stack → open only the matching GitHub repo in VSCode
+  description: Select domain, focus area, and tech stack → only the matching repo link shows
 spec:
   owner: user:your-username
   type: service
 
   parameters:
-    - title: Select Domain & Focus Area
+    - title: Select Domain & Focus Area & Stack
       required: [domain, techArea]
       properties:
         domain:
@@ -26,7 +26,7 @@ spec:
           oneOf:
 
             # -------------------
-            # Domain: Banking
+            # Banking
             # -------------------
             - properties:
                 domain:
@@ -37,7 +37,7 @@ spec:
               dependencies:
                 techArea:
                   oneOf:
-                    # Frontend for Banking
+                    # Banking / Frontend
                     - properties:
                         techArea:
                           const: Frontend
@@ -54,7 +54,7 @@ spec:
                             - https://github.com/your-org/banking-typescript-frontend
                       required: [frontend]
 
-                    # Backend for Banking
+                    # Banking / Backend
                     - properties:
                         techArea:
                           const: Backend
@@ -71,7 +71,7 @@ spec:
                             - https://github.com/your-org/banking-ruby-backend
                       required: [backend]
 
-                    # Database for Banking
+                    # Banking / Database
                     - properties:
                         techArea:
                           const: Database
@@ -88,7 +88,7 @@ spec:
                       required: [database]
 
             # -------------------
-            # Domain: Insurance
+            # Insurance
             # -------------------
             - properties:
                 domain:
@@ -99,7 +99,7 @@ spec:
               dependencies:
                 techArea:
                   oneOf:
-                    # Frontend for Insurance
+                    # Insurance / Frontend
                     - properties:
                         techArea:
                           const: Frontend
@@ -114,7 +114,7 @@ spec:
                             - https://github.com/kjchandan/simple-frontend-code
                       required: [frontend]
 
-                    # Backend for Insurance
+                    # Insurance / Backend
                     - properties:
                         techArea:
                           const: Backend
@@ -129,7 +129,7 @@ spec:
                             - https://github.com/your-org/insurance-django-backend
                       required: [backend]
 
-                    # Database for Insurance
+                    # Insurance / Database
                     - properties:
                         techArea:
                           const: Database
@@ -145,7 +145,7 @@ spec:
                       required: [database]
 
             # -------------------
-            # Domain: HealthCare
+            # HealthCare
             # -------------------
             - properties:
                 domain:
@@ -156,7 +156,7 @@ spec:
               dependencies:
                 techArea:
                   oneOf:
-                    # Frontend for HealthCare
+                    # HealthCare / Frontend
                     - properties:
                         techArea:
                           const: Frontend
@@ -171,7 +171,7 @@ spec:
                             - https://github.com/your-org/healthcare-angular-frontend
                       required: [frontend]
 
-                    # Backend for HealthCare
+                    # HealthCare / Backend
                     - properties:
                         techArea:
                           const: Backend
@@ -186,7 +186,7 @@ spec:
                             - https://github.com/your-org/healthcare-springboot-backend
                       required: [backend]
 
-                    # Database for HealthCare
+                    # HealthCare / Database
                     - properties:
                         techArea:
                           const: Database
@@ -202,7 +202,7 @@ spec:
                       required: [database]
 
             # -------------------
-            # Domain: Education
+            # Education
             # -------------------
             - properties:
                 domain:
@@ -213,7 +213,7 @@ spec:
               dependencies:
                 techArea:
                   oneOf:
-                    # Frontend for Education
+                    # Education / Frontend
                     - properties:
                         techArea:
                           const: Frontend
@@ -228,7 +228,7 @@ spec:
                             - https://github.com/your-org/education-reactjs-frontend
                       required: [frontend]
 
-                    # Backend for Education
+                    # Education / Backend
                     - properties:
                         techArea:
                           const: Backend
@@ -243,7 +243,7 @@ spec:
                             - https://github.com/your-org/education-springboot-backend
                       required: [backend]
 
-                    # Database for Education
+                    # Education / Database
                     - properties:
                         techArea:
                           const: Database
