@@ -9,14 +9,15 @@ metadata:
     - frontend
     - backend
     - database
+
 spec:
   owner: user:your-username
   type: service
 
   parameters:
-    # Step 1 - Domain and Focus Area
+    # Step 1 - Select domain and tech area
     - title: Project Info
-      description: Choose your domain and area of tech focus.
+      description: Choose your domain and tech focus.
       required:
         - domain
         - techArea
@@ -37,123 +38,59 @@ spec:
             - Backend
             - Database
 
-    # Step 2 - Tech Stack Options (based on domain + focus area)
+    # Step 2 - Select tech stack based on techArea only
     - title: Tech Stack Selection
-      description: Based on domain and focus, select a technology stack.
+      description: Now select your technology stack based on the chosen focus area.
       dependencies:
         techArea:
           oneOf:
-            # FRONTEND OPTIONS
             - properties:
                 techArea:
                   const: Frontend
-                domain:
-                  enum: [Banking]
                 frontend:
                   title: UI Framework
                   type: string
-                  enum: [Vue.js, Next.js, Typescript]
+                  enum:
+                    - Vue.js (Banking, Education)
+                    - Next.js (Banking, Education)
+                    - Typescript (Banking, Education)
+                    - React (Insurance)
+                    - Angular (Insurance)
+                    - Three.js (HealthCare, Education)
+                    - ReactJs (HealthCare, Education)
+                    - Angular 2+ (HealthCare, Education)
               required: [frontend]
 
             - properties:
                 techArea:
-                  const: Frontend
-                domain:
-                  enum: [Insurance]
-                frontend:
-                  title: UI Framework
-                  type: string
-                  enum: [React, Angular]
-              required: [frontend]
-
-            - properties:
-                techArea:
-                  const: Frontend
-                domain:
-                  enum: [HealthCare]
-                frontend:
-                  title: UI Framework
-                  type: string
-                  enum: [Three.js, ReactJs, Angular 2+]
-              required: [frontend]
-
-            - properties:
-                techArea:
-                  const: Frontend
-                domain:
-                  enum: [Education]
-                frontend:
-                  title: UI Framework
-                  type: string
-                  enum: [Vue.js, Next.js, Typescript, Three.js, ReactJs, Angular 2+]
-              required: [frontend]
-
-            # BACKEND OPTIONS
-            - properties:
-                techArea:
                   const: Backend
-                domain:
-                  enum: [Banking]
-                backend:
-                  title: Backend Platform
-                  type: string
-                  enum: [Java, Python, Ruby]
-              required: [backend]
-
-            - properties:
-                techArea:
-                  const: Backend
-                domain:
-                  enum: [Insurance]
-                backend:
-                  title: Backend Platform
-                  type: string
-                  enum: [Scala, Go, Django]
-              required: [backend]
-
-            - properties:
-                techArea:
-                  const: Backend
-                domain:
-                  enum: [HealthCare]
-                backend:
-                  title: Backend Platform
-                  type: string
-                  enum: [Springboot, ASP.NET]
-              required: [backend]
-
-            - properties:
-                techArea:
-                  const: Backend
-                domain:
-                  enum: [Education]
                 backend:
                   title: Backend Platform
                   type: string
                   enum:
-                    - Java
-                    - Python
-                    - Ruby
-                    - PHP Kotlin
-                    - C sharp
-                    - Perl
-                    - Scala
-                    - Go
-                    - Djangi
-                    - Springboot
-                    - ASP.NET
+                    - Java (Banking, Education)
+                    - Python (Banking, Education)
+                    - Ruby (Banking, Education)
+                    - Scala (Insurance, Education)
+                    - Go (Insurance, Education)
+                    - Django (Insurance)
+                    - Springboot (HealthCare, Education)
+                    - ASP.NET (HealthCare, Education)
+                    - PHP Kotlin (Education)
+                    - C sharp (Education)
+                    - Perl (Education)
+                    - Djangi (Education)
               required: [backend]
 
-            # DATABASE OPTIONS
             - properties:
                 techArea:
                   const: Database
-                domain:
-                  enum: [Banking, Insurance, HealthCare, Education]
                 database:
                   title: Database
                   type: string
-                  enum: [MYSQL, PostgreSQL]
+                  enum:
+                    - MYSQL
+                    - PostgreSQL
               required: [database]
 
   steps:
@@ -171,18 +108,16 @@ spec:
 
   output:
     text:
-      - title: ✅ Project Created Successfully
+      - title: ✅ Project Generated
         content: |
           You selected:
           - Domain: ${{ parameters.domain }}
           - Focus Area: ${{ parameters.techArea }}
-
-          Stack:
           - Frontend: ${{ parameters.frontend }}
           - Backend: ${{ parameters.backend }}
           - Database: ${{ parameters.database }}
 
     links:
-      - title: 💻 Open in VSCode
+      - title: Open in VSCode
         icon: code
         url: https://vscode.dev/
