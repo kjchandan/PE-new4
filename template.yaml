@@ -3,7 +3,7 @@ kind: Template
 metadata:
   name: strict-stack-selector
   title: Developer Friendly portal
-  description: Select domain, focus area, and tech stack → only the matching repo link shows
+  description: Provisioning Github repo codebase to VScode by selecting the techstack
   tags:
     - backstage
     - developer
