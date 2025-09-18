@@ -2,8 +2,8 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: dynamic-tech-stack
-  title: Dynamic Tech Stack Selector
-  description: Choose domain and tech area, then get correct stack options
+  title: Dynamic Tech Stack Selector with Repo Links
+  description: Choose domain, focus area, tech stack and open matching GitHub repo in VSCode.dev
 spec:
   owner: user:your-username
   type: service
@@ -24,6 +24,7 @@ spec:
       dependencies:
         domain:
           oneOf:
+
             # BANKING
             - properties:
                 domain:
@@ -41,6 +42,12 @@ spec:
                           title: UI Framework
                           type: string
                           enum: [Vue.js, Next.js, Typescript]
+                        repoUrl:
+                          type: string
+                          enum:
+                            - https://github.com/your-org/banking-vuejs-frontend
+                            - https://github.com/your-org/banking-nextjs-frontend
+                            - https://github.com/your-org/banking-typescript-frontend
                       required: [frontend]
                     - properties:
                         techArea:
@@ -49,6 +56,12 @@ spec:
                           title: Backend Platform
                           type: string
                           enum: [Java, Python, Ruby]
+                        repoUrl:
+                          type: string
+                          enum:
+                            - https://github.com/your-org/banking-java-backend
+                            - https://github.com/your-org/banking-python-backend
+                            - https://github.com/your-org/banking-ruby-backend
                       required: [backend]
                     - properties:
                         techArea:
@@ -57,6 +70,11 @@ spec:
                           title: Database
                           type: string
                           enum: [MYSQL, PostgreSQL]
+                        repoUrl:
+                          type: string
+                          enum:
+                            - https://github.com/your-org/banking-mysql-schema
+                            - https://github.com/your-org/banking-postgresql-schema
                       required: [database]
 
             # INSURANCE
@@ -76,6 +94,11 @@ spec:
                           title: UI Framework
                           type: string
                           enum: [React, Angular]
+                        repoUrl:
+                          type: string
+                          enum:
+                            - https://github.com/kjchandan/simple-frontend-code  # React (your repo)
+                            - https://github.com/your-org/insurance-angular-frontend
                       required: [frontend]
                     - properties:
                         techArea:
@@ -84,6 +107,12 @@ spec:
                           title: Backend Platform
                           type: string
                           enum: [Scala, Go, Django]
+                        repoUrl:
+                          type: string
+                          enum:
+                            - https://github.com/your-org/insurance-scala-backend
+                            - https://github.com/your-org/insurance-go-backend
+                            - https://github.com/your-org/insurance-django-backend
                       required: [backend]
                     - properties:
                         techArea:
@@ -92,6 +121,11 @@ spec:
                           title: Database
                           type: string
                           enum: [MYSQL, PostgreSQL]
+                        repoUrl:
+                          type: string
+                          enum:
+                            - https://github.com/your-org/insurance-mysql-schema
+                            - https://github.com/your-org/insurance-postgresql-schema
                       required: [database]
 
             # HEALTHCARE
@@ -111,6 +145,12 @@ spec:
                           title: UI Framework
                           type: string
                           enum: [Three.js, ReactJs, Angular 2+]
+                        repoUrl:
+                          type: string
+                          enum:
+                            - https://github.com/your-org/healthcare-threejs-frontend
+                            - https://github.com/your-org/healthcare-reactjs-frontend
+                            - https://github.com/your-org/healthcare-angular-frontend
                       required: [frontend]
                     - properties:
                         techArea:
@@ -119,6 +159,11 @@ spec:
                           title: Backend Platform
                           type: string
                           enum: [Springboot, ASP.NET]
+                        repoUrl:
+                          type: string
+                          enum:
+                            - https://github.com/your-org/healthcare-springboot-backend
+                            - https://github.com/your-org/healthcare-aspnet-backend
                       required: [backend]
                     - properties:
                         techArea:
@@ -127,6 +172,11 @@ spec:
                           title: Database
                           type: string
                           enum: [MYSQL, PostgreSQL]
+                        repoUrl:
+                          type: string
+                          enum:
+                            - https://github.com/your-org/healthcare-mysql-schema
+                            - https://github.com/your-org/healthcare-postgresql-schema
                       required: [database]
 
             # EDUCATION
@@ -146,6 +196,15 @@ spec:
                           title: UI Framework
                           type: string
                           enum: [Vue.js, Next.js, Typescript, Three.js, ReactJs, Angular 2+]
+                        repoUrl:
+                          type: string
+                          enum:
+                            - https://github.com/your-org/education-vuejs-frontend
+                            - https://github.com/your-org/education-nextjs-frontend
+                            - https://github.com/your-org/education-typescript-frontend
+                            - https://github.com/your-org/education-threejs-frontend
+                            - https://github.com/your-org/education-reactjs-frontend
+                            - https://github.com/your-org/education-angular-frontend
                       required: [frontend]
                     - properties:
                         techArea:
@@ -165,6 +224,20 @@ spec:
                             - Djangi
                             - Springboot
                             - ASP.NET
+                        repoUrl:
+                          type: string
+                          enum:
+                            - https://github.com/your-org/education-java-backend
+                            - https://github.com/your-org/education-python-backend
+                            - https://github.com/your-org/education-ruby-backend
+                            - https://github.com/your-org/education-php-kotlin-backend
+                            - https://github.com/your-org/education-csharp-backend
+                            - https://github.com/your-org/education-perl-backend
+                            - https://github.com/your-org/education-scala-backend
+                            - https://github.com/your-org/education-go-backend
+                            - https://github.com/your-org/education-django-backend
+                            - https://github.com/your-org/education-springboot-backend
+                            - https://github.com/your-org/education-aspnet-backend
                       required: [backend]
                     - properties:
                         techArea:
@@ -173,11 +246,16 @@ spec:
                           title: Database
                           type: string
                           enum: [MYSQL, PostgreSQL]
+                        repoUrl:
+                          type: string
+                          enum:
+                            - https://github.com/your-org/education-mysql-schema
+                            - https://github.com/your-org/education-postgresql-schema
                       required: [database]
 
   steps:
     - id: fetch
-      name: Fetch Template
+      name: Fetch Template Skeleton
       action: fetch:template
       input:
         url: ./skeleton
@@ -194,15 +272,16 @@ spec:
         content: |
           You selected:
           - Domain: ${{ parameters.domain }}
+          - Focus Area: ${{ parameters.techArea }}
           - Frontend: ${{ parameters.frontend }}
           - Backend: ${{ parameters.backend }}
           - Database: ${{ parameters.database }}
 
     links:
-      - title: 💻 Open in VSCode (optional example)
+      - title: 💻 Open in VSCode
         icon: code
-        url: https://vscode.dev/
+        url: https://vscode.dev/${{ parameters.repoUrl | replace('https://github.com/', 'github.com/') }}
 
-      - title: 🚀 Open in Replit (optional example)
+      - title: 🚀 Open in Replit (optional)
         icon: rocket
         url: https://replit.com/
