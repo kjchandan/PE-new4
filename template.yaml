@@ -113,7 +113,7 @@ spec:
                           title: Repo URL
                           type: string
                           enum:
-                            - https://github.com/your-org/insurance-react-frontend
+                            - https://github.com/kjchandan/simple-frontend-code/tree/main
                             - https://github.com/your-org/insurance-angular-frontend
                           ui:visibleIf: frontend
                       required: [frontend]
