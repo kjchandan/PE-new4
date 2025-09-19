@@ -327,3 +327,7 @@ spec:
       - title: 💻 Open in VSCode
         icon: code
         url: https://vscode.dev/${{ parameters.repoUrl | replace('https://github.com/', 'github.com/') }}
+
+      - title: 🔗 View on GitHub
+        icon: github
+        url: ${{ parameters.repoUrl }}
